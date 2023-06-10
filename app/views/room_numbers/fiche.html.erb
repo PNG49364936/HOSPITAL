@@ -1,0 +1,16 @@
+<div class="container mt-5">
+    <div>
+       
+       
+        <p><strong>N° chambre= </strong> <%= @room_number.numero%></p>
+        
+    </div>
+
+    <div links_fiche>
+            <%=link_to"Annuler fiche",room_number_path(@room_number),method: :delete, class: "btn btn-danger btn-margin"%>
+            
+           
+            <%=link_to"Home",root_path%>
+    </div>
+    <br><br><br>
+    

@@ -1,0 +1,39 @@
+<div class="container">
+    <div>
+      <h1>Créer specialités exercées dans hopital.</h1>
+      <br>
+    </div>
+
+  <br><br>
+        <div class="row">
+            <div class="col-4 mt-5">
+                <%= simple_form_for(@specialite) do |f| %>
+                    <div class="form-group">
+                        <%= f.label :specialite, content_tag(:strong, 'Spécialité :') %>
+                        <!--<%= f.text_field :specialite, class: 'form-control', value: @specialite.specialite %>-->
+                      <!-- <%= f.select :specialite, ['Medecine Generale','Cardiologie', 'Dermatologie', 'Opthamologie'],{ include_blank: "Choisir" }, { readonly: true}  %>-->
+                        <!--<small class="form-text text-muted">-->
+                        
+                        <!--< </small>-->
+                        <%= f.select :specialite, options_for_select(@available_options), { include_blank: "Choisir" }, { readonly: true } %>
+            </div>
+
+            <% if @available_options.empty? %>
+                                        <div class="alert alert-danger">
+                                          Toutes les specialites créées.
+                                        </div>
+             <% end %>
+
+
+
+                <br><br>
+                <%= f.submit 'Valider', class: 'btn btn-primary' %>
+                                <span><%=link_to"Home",root_path,class: "btn btn-primary" %></span>
+                               
+                        
+
+                <%end%>
+           
+        </div>
+   
+</div>

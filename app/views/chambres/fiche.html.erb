@@ -1,0 +1,22 @@
+<div class="container mt-5">
+    <div>
+        <p> <strong>Chambre ID = </strong>  <%= @chambre.id %></p>
+        <p> <strong>Numero de chambre = </strong>  <%= @chambre.numero%></p>
+       
+    </div>
+
+    <div links_fiche>
+            <%=link_to"Annuler fiche", chambre_path(@chambre),method: :delete, class: "btn btn-danger btn-margin"%>
+            <%= link_to "Liste des chambres", chambres_path, class: "creer"%>
+            <%=link_to"Home",root_path%>
+    </div>
+    <br><br><br>
+    <div>
+        <p>Dossier créé le: <%=@chambre.created_at%></p>
+        <p>Dossier modifié le: <%=@chambre.updated_at%></p>
+
+
+
+
+    </div>
+

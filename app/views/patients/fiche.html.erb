@@ -1,0 +1,24 @@
+<div class="container mt-5">
+    <div>
+       
+        <p> <strong>Patient Nom = </strong>  <%= @patient.nom.capitalize %></p>
+        <p><strong>Patient pathologie = </strong> <%= @patient.specialite.specialite%></p>
+        <p><strong>Patient N°chambre= </strong> <%= @patient.chambre.numero%></p>
+        <p><strong>Patient Docteur = </strong> <%= @patient.docteur.nom.capitalize%></p>
+    </div>
+
+    <div links_fiche>
+            <%=link_to"Annuler fiche",patient_path(@patient),method: :delete, class: "btn btn-danger btn-margin"%>
+            <%= link_to "Liste des patients", patients_path, class: "creer"%>
+            <%=link_to"Home",root_path%>
+    </div>
+    <br><br><br>
+    <div>
+        <p>Dossier créé le: <%=@patient.created_at%></p>
+        <p>Dossier modifié le: <%=@patient.updated_at%></p>
+
+
+
+
+    </div>
+

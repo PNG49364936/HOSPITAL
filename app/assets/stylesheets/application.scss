@@ -1,0 +1,22 @@
+@import "bootstrap/scss/bootstrap";
+@import "pages/home";
+@import "docteurs/index";
+@import "room_numbers/new";
+@import "chambres/index";
+
+
+
+
+.notice{
+    color: red;
+    font-weight: bold;
+    margin-top: 35px;
+    margin-left: 35px;
+}
+
+.alert{
+    color: red;
+    font-weight: bold;
+    margin-top: 35px;
+    margin-left: 35px;
+}

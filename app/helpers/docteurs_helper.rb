@@ -1,0 +1,2 @@
+module DocteursHelper
+end

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nom: MyString
+  pathologie: MyString
+  docteur: MyString
+  chambre: 1
+  commentaires: MyText
+
+two:
+  nom: MyString
+  pathologie: MyString
+  docteur: MyString
+  chambre: 1
+  commentaires: MyText

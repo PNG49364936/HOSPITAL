@@ -1,0 +1,37 @@
+<div class="container col-12">
+    <div>
+        <h1>Créer Docteur</h1>
+    </div>
+    <br><br>
+            <div class="row">
+                <div class="col-4 mt-5">
+                    <% puts @specialites.inspect %>
+                    <%= simple_form_for(@docteur) do |f| %>
+                            <div class="col-2.5">
+                                <%=  f.label :nom,content_tag(:strong, 'Nom Docteur:') %>
+                                <%=  f.text_field :nom, class:"rounded-box"%>
+                            </div>
+                            <br><br>
+                            <div class="col-3.5">
+                                <div class="form-group">
+                                 
+                                    <%= f.label :specialite, content_tag(:strong, "Spécialité:"), class: "font-weight-bold" %>
+                                    <%= f.select :specialite_id, options_for_select(@specialites.map { |s| [s.specialite, s.id] }, prompt: "Choisir une spécialité"), {} %>
+
+                                </div>
+                            </div>
+                  
+                              
+                              <br><br>
+                              
+                            <div class="submit">
+                            <%=f.submit"Valider", class: "btn btn-primary"%>
+
+                           
+                           
+                            <span><%=link_to"Home",root_path,class: "btn btn-primary" %></span>
+                            </div>
+                    <%end%>
+                </div>
+            </div>
+</div>

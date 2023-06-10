@@ -1,0 +1,45 @@
+<div class="container mt-10">
+
+    <div class="row">
+      
+        <table class="table table-bordered" style="border: 4px solid black;">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Numero</th>
+                <th>Etat</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <% @chambres.each do |chambre| %>
+                <tr>
+                  <td><%= chambre.id %></td>
+                  <td><%= chambre.numero %></td>
+                  <td class="<%=chambre.disponible ? 'dispo' : 'occupee' %>"><%= chambre.disponible ? "Disponible" : "Occupée" %></td>
+                  <td>
+                        <div>
+                        <%= link_to "Modifier",edit_chambre_path(chambre),class: "btn btn-primary"  %>
+                        <%= link_to "Fiche", fiche_chambre_path(chambre),class: "btn btn-primary" %>
+                      </div>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <div>
+              <p>Nombre de chambres: <%= Chambre.count %></p>   
+              <p>Nombre de chambres occupées: <%= Chambre.where(disponible:false).count%></p>   
+              <p>Nombre de chambres libres: <%= Chambre.where(disponible:true).count%></p> 
+              <p>Nombre de patients: <%= Patient.count%></p> 
+
+          </div>
+
+
+          <div>
+        <%=link_to"Home",root_path%>
+          </div>
+   </div>
+</div>
+
+

@@ -1,0 +1,60 @@
+
+
+<div class="container mt-5 ">
+    <table class="table">
+      <H4>Gestion des patients</H4>
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Patients</strong></td>
+          <td><%= link_to "Créer dossier Patient", new_patient_path, class: "creer" %></td>
+          <td><%= link_to "Liste patients", patients_path, class: "creer" %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="container mt-5 ">
+    <table class="table">
+      <H4>Gestion Hopital</H4>
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+        <tbody>
+          <tr>
+            <td><strong>Chambres(affectation)</strong></td>
+            <td><%= link_to "Débloquer chambre", new_chambre_path, class: "creer" %></td>
+            <td><%= link_to "Liste chambres (dispos-occupées)", chambres_path  %></td>
+           
+          </tr>
+          <tr>
+            <td><strong>Medecins</strong></td>
+            <td><%= link_to "Créer Médecin", new_docteur_path, class: "creer" %></td>
+            <td><%= link_to "Liste médecins", docteurs_path %></td>
+          </tr>
+          <tr>
+            <td><strong>Spécialités</strong></td>
+            <td><%= link_to "Valider Specialité", new_specialite_path, class: "creer" %></td>
+            <td><%= link_to "Liste des spécialités", specialites_path %></td>
+          </tr>
+          <tr>
+            <td><strong>Chambres(création)</strong></td>
+            <td><%= link_to "Créer n° de chambre", room_numbers_new_path, class: "creer" %></td>
+            <td><%= link_to "Liste chambres créées", room_numbers_path %></td>
+          </tr>
+        </tbody>  
+    
+    </table>
+</div>
+
+
+

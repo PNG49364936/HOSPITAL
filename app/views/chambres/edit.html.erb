@@ -1,0 +1,25 @@
+<div class="container col-12">
+    <div>
+        <h1>Créer Chambre</h1>
+    </div>
+    <br><br>
+            <div class="row">
+                <div class="col-4 mt-5">
+                    <%= simple_form_for(@chambre) do |f| %>
+                            <div class="col-2.5">
+                                <%=  f.label :numero,content_tag(:strong, 'Numero de chambre:') %>
+                                <%= f.number_field :numero, prompt: "Choisir", :in => 0..Float::INFINITY %>
+                            </div>
+                                <div class="submit">
+                                    <br><br>
+                                    <%=f.submit"Valider", class: "btn btn-primary"%>
+                                    <span><%=link_to"Home",root_path,class: "btn btn-primary" %></span>
+                                </div>
+
+                    <%end%>
+                </div>
+            </div>
+
+
+
+</div>

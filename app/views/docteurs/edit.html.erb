@@ -1,0 +1,28 @@
+<div class="container col-12">
+    <div>
+        <h1>Créer Docteur</h1>
+    </div>
+    <br><br>
+            <div class="row">
+                <div class="col-4 mt-5">
+                    <%= simple_form_for(@docteur) do |f| %>
+                            <div class="col-2.5">
+                                <%=  f.label :nom,content_tag(:strong, 'Nom Docteur:') %>
+                                <%=  f.text_field :nom, class:"rounded-box"%>
+                            </div>
+    <br><br>
+                            <div class="col-3.5">
+                                <div class="form-group">
+                                <%= f.label :specialite, content_tag(:strong, "Spécialité:"), class: "font-weight-bold" %>
+                                <%= f.select :specialite, ['Medecine Generale', 'Cardiologue', 'Dermatologue', 'Ophtamologue'],{ include_blank: "Choisir" }, { readonly: true}  %>
+                                </div>
+                            </div>
+  <br><br>
+                            <div class="submit">
+                            <%=f.submit "Valider"%>
+                            </div>
+
+                    <%end%>
+                </div>
+            </div>
+</div>

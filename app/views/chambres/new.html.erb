@@ -1,0 +1,46 @@
+<div class="container col-12">
+    <div>
+        <h1>Créer Chambre</h1>
+    </div>
+    <br><br>
+            <div class="row">
+                <div class="col-4 mt-5">
+                    <%= simple_form_for(@chambre) do |f| %>
+                            <div class="col-2.5">
+                              
+                                <%=  f.label :numero,content_tag(:strong, 'Numero de chambre:') %>
+                                <!--<%= f.number_field :numero %>-->
+                                <%= puts @available_chambres%>
+                              
+
+                                
+                                 
+                             <%= f.select :numero, options_for_select(@available_options), { include_blank: "Choisir" }.merge( { readonly: true }) %>
+                                
+                                <% if @available_options.empty? %>
+                                        <div class="alert alert-danger">
+                                        Pas de n°de chambre disponible, demander création de numero de chambre.
+                                        </div>
+                                <% end %>
+
+
+                                <% if @chambre.errors[:numero].any? %>
+                                    <div class="alert alert-danger">
+                                        <%= @chambre.errors.full_messages_for(:numero).join(", ") %>
+                                    </div>
+                                <% end %>
+                                
+                            </div>
+                                <div class="submit">
+                                    <br><br>
+                                    <%=f.submit"Valider", class: "btn btn-primary"%>
+                                    <span><%=link_to"Home",root_path,class: "btn btn-primary" %></span>
+                                </div>
+
+                    <%end%>
+                </div>
+            </div>
+
+
+
+</div>
