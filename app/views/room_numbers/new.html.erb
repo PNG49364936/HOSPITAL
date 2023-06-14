@@ -25,7 +25,7 @@
             <% end %>
   </div>
             <div class=" numero ">
-            <% existing_numbers = RoomNumber.pluck(:numero).map(&:to_s) %>
+              <% existing_numbers = RoomNumber.pluck(:numero).map(&:to_s) %>
                   <div class="A1 <%= 'used' if existing_numbers.include?('1001') %>">
                     <h6>1001</h6>
                   </div>
@@ -38,7 +38,7 @@
                   <div class="C1 <%= 'used' if existing_numbers.include?('1021') %>">
                     <h6>1021</h6>
                   </div>
-                  <div class="C2" <%= 'used' if existing_numbers.include?('1012') %>">
+                  <div class="C2" <%= 'used' if existing_numbers.include?('1022') %>">
                     <h6>1022</h6>
                   </div>
             </div>

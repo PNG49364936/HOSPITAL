@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_date: 2023-06-13 11:24:33
+  end_date: 2023-06-13 11:24:33
+  patient: one
+  chambre: one
+
+two:
+  start_date: 2023-06-13 11:24:33
+  end_date: 2023-06-13 11:24:33
+  patient: two
+  chambre: two

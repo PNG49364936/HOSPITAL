@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_25_055830) do
+ActiveRecord::Schema.define(version: 2023_06_13_104319) do
 
   create_table "chambres", force: :cascade do |t|
     t.integer "numero"
@@ -31,11 +31,22 @@ ActiveRecord::Schema.define(version: 2023_05_25_055830) do
 
   create_table "docteurs", force: :cascade do |t|
     t.string "nom"
+    t.integer "docteur_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "specialite_id", null: false
-    t.string "specialite"
     t.index ["specialite_id"], name: "index_docteurs_on_specialite_id"
+  end
+
+  create_table "hospitalizations", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer "patient_id", null: false
+    t.integer "chambre_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chambre_id"], name: "index_hospitalizations_on_chambre_id"
+    t.index ["patient_id"], name: "index_hospitalizations_on_patient_id"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -43,10 +54,12 @@ ActiveRecord::Schema.define(version: 2023_05_25_055830) do
     t.text "commentaires"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "docteur_id", null: false
     t.integer "chambre_id", null: false
     t.integer "specialite_id", null: false
     t.string "specialite"
+    t.integer "docteur_id", null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.index ["chambre_id"], name: "index_patients_on_chambre_id"
     t.index ["docteur_id"], name: "index_patients_on_docteur_id"
     t.index ["specialite_id"], name: "index_patients_on_specialite_id"
@@ -73,6 +86,8 @@ ActiveRecord::Schema.define(version: 2023_05_25_055830) do
   end
 
   add_foreign_key "docteurs", "specialites"
+  add_foreign_key "hospitalizations", "chambres"
+  add_foreign_key "hospitalizations", "patients"
   add_foreign_key "patients", "chambres"
   add_foreign_key "patients", "docteurs"
   add_foreign_key "patients", "specialites"

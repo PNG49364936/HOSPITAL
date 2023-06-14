@@ -21,35 +21,37 @@ def create
   @docteur = Docteur.find(params[:patient][:docteur_id].to_i)
   @chambres = Chambre.all
   @chambre = Chambre.find(params[:patient][:chambre_id])
-  #specialite
   @specialites = Specialite.all
  
   @patient.specialite_id = params[:patient][:specialite_id]
   @patient.specialite = Specialite.find(params[:patient][:specialite_id])
-
-  #puts params[:patient][:doctor_id]
  
   if @docteur.specialite_id != @patient.specialite_id
-  
-    pp "#{@docteur.specialite.specialite}"
-    pp "#{@patient.specialite}"
-    pp @patient.errors
-    
     flash.now[:alert] = "Mauvais choix du Docteur, svp corriger. Accueil ne peut être accepté"
- 
     render :new
-   
-     elsif @chambre.disponible == false
+  elsif @chambre.disponible == false
     render :new, alert: "chambre occupée."
-     else
-    pp"avant" *100
+  else
     @chambre.update(disponible: false)
-    pp @chambre.errors
-    pp"apres" *100
-    @patient.save
-    redirect_to patient_path(@patient), notice: "Patient créé avec succès."
+    pp "1"*100
+    if @patient.save
+     pp "2" * 100
+     @hospitalization = Hospitalization.create(patient_id: @patient.id, chambre_id: @patient.chambre_id, start_date: params[:patient][:start_date], end_date: params[:patient][:end_date])
+
+      pp "3" * 100
+      if @hospitalization.save
+      pp "4" * 100
+        redirect_to root_path, notice: "Patient et Hospitalisation créés avec succès."
+      else
+        
+        redirect_to root_path, notice: "une erreur est survenue"
+      end
+    else
+      render :new
+    end
   end
- end
+end
+
  
  
 
@@ -87,7 +89,7 @@ def create
 
 private
    def params_patient 
-      params.require(:patient).permit(:nom, :pathologie, :chambre, :commentaires, :docteur_id, :chambre_id, :specialite_id)
+      params.require(:patient).permit(:nom, :pathologie, :chambre, :commentaires, :docteur_id, :chambre_id, :specialite_id, :start_date, :end_date)
    end
    
 
