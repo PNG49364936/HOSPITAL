@@ -16,9 +16,9 @@ class RoomNumber < ApplicationRecord
     private
   # allowed_number
   def allowed_number
-         allowed_numbers = ['1001', '1011', '1012', '1021', '1022']
+         allowed_numbers = ['1010', '1011', '1012', '1021', '1022', '1023']
     unless allowed_numbers.include?(numero.to_s)
-         errors.add(:numero, "Les seuls chiffres autorisés sont 1, 2, 3, 4 et 5.")
+         errors.add(:numero, "Les seuls chiffres autorisés sont '1010', '1011', '1012', '1021', '1022', '1023'")
     end
   end
   #--------------------------------------------------------------

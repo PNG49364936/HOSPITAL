@@ -2,3 +2,12 @@ fr:
   time:
     formats:
       default: "%d/%m/%Y %H:%M"
+
+fr:
+  activerecord:
+    errors:
+      models:
+        patient:
+          attributes:
+            nom:
+              blank: "doit être renseigné"

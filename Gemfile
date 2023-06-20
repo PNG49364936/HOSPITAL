@@ -5,6 +5,8 @@ ruby '3.0.2'
 
 gem "simple_form"
 gem "autoprefixer-rails"
+gem 'rails-i18n'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.0.6', '>= 6.0.6.1'
