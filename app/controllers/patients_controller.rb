@@ -65,11 +65,12 @@ end
    @patient = Patient.find(params[:id])
    
    if @patient.chambre.present?
+    pp "A"*100
      @patient.chambre.update(disponible: true)
    end
-   
+   pp "b"*100
    @patient.destroy
- 
+   pp "c"*100
    redirect_to root_path, notice: "Annulation enregistrée"
  end
 

@@ -23,6 +23,10 @@ Rails.application.routes.draw do
     get 'fiche',on: :member
   end
 
+  resources :chambres do
+    get 'unavailable_dates', on: :member
+  end
+
   root to: 'pages#home'
   
   

@@ -10,6 +10,9 @@
         validates :nom, length: { minimum: 3 }
         validates :nom, presence: true
         validates :chambre, presence: true
+    
+
+
 
 
         #____SANS CONTROLLER

@@ -8,12 +8,15 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "^5.4.4",
     "bootstrap": "^5.2.3",
+    "flatpickr": "^4.6.13",
     "stimulus": "^3.2.1",
     "turbolinks": "^5.2.0",
-    "typed.js": "^2.0.15"
+    "typed.js": "^2.0.15",
+    "webpack": "5"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^4.13.3"
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
   }
 }

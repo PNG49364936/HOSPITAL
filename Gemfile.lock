@@ -82,7 +82,7 @@ GEM
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
-    i18n (1.12.0)
+    i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
@@ -90,9 +90,9 @@ GEM
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    loofah (2.20.0)
+    loofah (2.21.3)
       crass (~> 1.0.2)
-      nokogiri (>= 1.5.9)
+      nokogiri (>= 1.12.0)
     mail (2.8.1)
       mini_mime (>= 0.1.1)
       net-imap
@@ -102,7 +102,7 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    minitest (5.18.0)
+    minitest (5.18.1)
     msgpack (1.7.0)
     net-imap (0.3.4)
       date
@@ -114,15 +114,15 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.14.3-arm64-darwin)
+    nokogiri (1.15.2-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.14.3-x86_64-darwin)
+    nokogiri (1.15.2-x86_64-darwin)
       racc (~> 1.4)
     public_suffix (5.0.1)
     puma (4.3.12)
       nio4r (~> 2.0)
-    racc (1.6.2)
-    rack (2.2.6.4)
+    racc (1.7.1)
+    rack (2.2.7)
     rack-proxy (0.7.6)
       rack
     rack-test (2.1.0)
@@ -145,8 +145,9 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.5.0)
-      loofah (~> 2.19, >= 2.19.1)
+    rails-html-sanitizer (1.6.0)
+      loofah (~> 2.21)
+      nokogiri (~> 1.14)
     rails-i18n (7.0.7)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
@@ -177,6 +178,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    simple_calendar (2.4.3)
+      rails (>= 3.0)
     simple_form (5.2.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -193,7 +196,7 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.6.2-arm64-darwin)
     sqlite3 (1.6.2-x86_64-darwin)
-    thor (1.2.1)
+    thor (1.2.2)
     thread_safe (0.3.6)
     tilt (2.1.0)
     timeout (0.3.2)
@@ -221,7 +224,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.7)
+    zeitwerk (2.6.8)
 
 PLATFORMS
   arm64-darwin-20
@@ -239,6 +242,7 @@ DEPENDENCIES
   rails-i18n
   sass-rails (>= 6)
   selenium-webdriver
+  simple_calendar
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)

@@ -69,6 +69,17 @@ class ChambresController < ApplicationController
     @chambre = Chambre.find(params[:id])
   end
 
+  def unavailable_dates
+    chambre = Chambre.find(params[:id])
+    hospitalizations = chambre.hospitalizations
+  
+    dates = hospitalizations.map do |h|
+      (h.start_date..h.end_date).to_a
+    end.flatten.uniq
+  
+    render json: dates
+  end
+
   private
 
   def params_chambre

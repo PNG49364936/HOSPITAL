@@ -6,6 +6,7 @@ ruby '3.0.2'
 gem "simple_form"
 gem "autoprefixer-rails"
 gem 'rails-i18n'
+gem 'simple_calendar'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
