@@ -12,7 +12,7 @@
       <% end %>
   </div>
 
-<div class="container col-12">
+<div class="container col-12" >
     <div>
         <h1>Créer Patient</h1>
     </div>
@@ -36,15 +36,18 @@
                           </div>
                           <br><br>
 
-                            <div class="col-2.5" data-controller="date-selector">
-                              <%= f.label :start_date, content_tag(:strong, 'Date de début d\'hospitalisation:') %>
-                              <%= f.date_field :start_date, data: { target: "date-selector.start" },class:"rounded-box" %>
-                            </div>
-                            <br><br>
-                            <div class="col-2.5" data-controller="date-selector">
-                              <%= f.label :end_date, content_tag(:strong, 'Date de fin d\'hospitalisation:') %>
-                              <%= f.date_field :end_date, data: { target: "date-selector.end" },class:"rounded-box" %>
-                            </div>
+                          <div class="col-2.5" data-controller="date-selector">
+                            <%= f.label :start_date, content_tag(:strong, 'Date de début d\'hospitalisation:') %>
+                            <%= f.date_field :start_date, data: { 'date-selector-target': "start" }, class:"rounded-box" %>
+                        </div>
+                        
+                        <br><br>
+                        
+                        <div class="col-2.5" data-controller="date-selector">
+                            <%= f.label :end_date, content_tag(:strong, 'Date de fin d\'hospitalisation:') %>
+                            <%= f.date_field :end_date, data: { 'date-selector-target': "end" }, class:"rounded-box" %>
+                        </div>
+                        
                             <br><br>
 
                             

@@ -1,7 +1,6 @@
 import { Controller } from "stimulus";
 import flatpickr from "flatpickr";
 
-
 export default class extends Controller {
   static targets = ["start", "end", "chambre"];
 
@@ -26,6 +25,7 @@ export default class extends Controller {
     this.endFlatpickr.set("disable", dates);
   }
 }
+
 
 
 
