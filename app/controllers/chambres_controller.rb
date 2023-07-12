@@ -71,9 +71,11 @@ class ChambresController < ApplicationController
 
   def unavailable_dates
     chambre = Chambre.find(params[:id])
+    pp "100" * 100
     hospitalizations = chambre.hospitalizations
   
     dates = hospitalizations.map do |h|
+      pp "100" * 100
       (h.start_date..h.end_date).to_a
     end.flatten.uniq
   
