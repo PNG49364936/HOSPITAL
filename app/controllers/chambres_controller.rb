@@ -3,6 +3,8 @@ class ChambresController < ApplicationController
 
   def index
     @chambres = Chambre.all
+    pp "test"* 100
+    Rails.logger.debug "@chambres: #{@chambres.inspect}"
   end
 
   def show
@@ -69,23 +71,26 @@ class ChambresController < ApplicationController
     @chambre = Chambre.find(params[:id])
   end
 
+  
+
   def unavailable_dates
     chambre = Chambre.find(params[:id])
     pp "100" * 100
     hospitalizations = chambre.hospitalizations
   
-    dates = hospitalizations.map do |h|
-      pp "100" * 100
-      (h.start_date..h.end_date).to_a
-    end.flatten.uniq
+    dates = hospitalizations.flat_map do |h|
+      (h.start_date.to_date..h.end_date.to_date).to_a
+    end.uniq
   
     render json: dates
   end
+  
+
 
   private
 
   def params_chambre
-    params.require(:chambre).permit(:numero, :text, :disponible)
+    params.require(:chambre).permit(:numero, :text, :disponible, :date_range)
   end
 
 end

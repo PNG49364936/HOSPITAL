@@ -1,6 +1,7 @@
 
 
     class Patient < ApplicationRecord
+        attr_accessor :date_range
         belongs_to :docteur
         belongs_to :chambre
         belongs_to :specialite

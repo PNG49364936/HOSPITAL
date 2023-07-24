@@ -14,6 +14,7 @@ class PatientsController < ApplicationController
   @chambres = Chambre.where(disponible: true)
   #@chambres = Chambre.disponibles
   @specialites = Specialite.all
+ 
 end
 
 def create
@@ -88,7 +89,7 @@ end
 
 private
    def params_patient 
-      params.require(:patient).permit(:nom, :pathologie, :chambre, :commentaires, :docteur_id, :chambre_id, :specialite_id, :start_date, :end_date)
+      params.require(:patient).permit(:nom, :pathologie, :chambre, :commentaires, :docteur_id, :chambre_id, :specialite_id, :start_date, :end_date, :date_range)
    end
    
 
