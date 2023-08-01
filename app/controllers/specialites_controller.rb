@@ -12,7 +12,7 @@ class SpecialitesController < ApplicationController
    def new
   
       @validated_specialites = Specialite.pluck(:specialite)
-      @docteurs_specialites = ['Medecine Generale', 'Cardiologie', 'Dermatologie', 'Opthamologie']
+      @docteurs_specialites = ['Medecine Generale', 'Cardiologie', 'Dermatologie', 'Opthamologie','Pneumologie']
       @available_specialites = @docteurs_specialites - @validated_specialites
       @available_options = @available_specialites.map { |specialite| [specialite, specialite] }
       @specialite = Specialite.new
@@ -50,7 +50,7 @@ class SpecialitesController < ApplicationController
   end
 
   def hopital_specialites
-    @specialites = ['Medecine Generale', 'Cardiologie', 'Dermatologie', 'Opthamologie']
+    @specialites = ['Medecine Generale', 'Cardiologie', 'Dermatologie', 'Opthamologie','pneumologie']
   end
 
    private

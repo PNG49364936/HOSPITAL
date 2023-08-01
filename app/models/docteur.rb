@@ -3,6 +3,7 @@ class Docteur < ApplicationRecord
         pp "testA" * 10
         #has_one :specialite
         belongs_to :specialite
+        has_many :patients
       
         
       

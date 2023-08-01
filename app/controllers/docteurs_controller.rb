@@ -4,7 +4,7 @@ require 'specialite'
 
 class DocteursController < ApplicationController
     def index
-      @docteurs = Docteur.all
+     @docteurs = Docteur.all
     end
 
     def show

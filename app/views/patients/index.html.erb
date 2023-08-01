@@ -1,11 +1,41 @@
 <div class="container mt-10 col-12">
 <h1>Fiche patients</h1>
+      <div class="search">  
+          <%= search_form_for @q do |form| %>
+              <div class="row">
+                  <div class="form-group search-field col">
+                    <%= form.label :nom_cont, "Nom malade?" %>
+                    <%= form.search_field :nom_cont, class: "form-control" %>
+                  </div>
+                  <div class="form-group search-field col">
+                    <%= form.label :docteur_nom_eq, "Nom docteur?" %>
+                    <%= form.search_field :docteur_nom_eq, class: "form-control" %>
+                  </div>
+                    <div class="form-group search-field col">
+                      <%= form.label :chambre_numero_eq, "N° chambre?" %>
+                      <%= form.search_field :chambre_numero_eq, class: "form-control" %>
+                    </div>
+                    <div class="form-group search-field col">
+                      <%= form.label :specialite_specialite_cont, "Pathologie?" %>
+                      <%= form.search_field :specialite_specialite_cont, class: "form-control" %>
+                    </div>  
+                 
+                </div>
+                <br>
+                <div class="form-group">
+                  <%= form.submit class: "btn btn-primary btn-sm" %>
+                </div>
+          <% end %>
+      </div>
+
+
+   
     <div class="row">
       
         <table class="table table-bordered" style="border: 4px solid black;">
             <thead>
               <tr>
-                <th>Nom</th>
+                <th>Nom patient</th>
                 <th>N° Chambre</th>
                 <th>Pathologie</th>
                 <th>Medecin</th>
@@ -36,6 +66,7 @@
 
           <div>
         <%=link_to"Home",root_path,class: "btn btn-primary"%>
+        <%= link_to "Liste patients", patients_path, class: "btn btn-primary" %></td>
           </div>
    </div>
 </div>

@@ -2,6 +2,8 @@ class ChambresController < ApplicationController
  
 
   def index
+    #@q = Chambre.ransack(params[:q])
+    #@chambres = @q.result(distinct: true)
     @chambres = Chambre.all
     pp "test"* 100
     Rails.logger.debug "@chambres: #{@chambres.inspect}"

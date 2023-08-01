@@ -7,7 +7,7 @@ class Specialite < ApplicationRecord
  
  
 
-  SPECIALITES_AUTORISEES = ['Medecine Generale', 'Cardiologie', 'Dermatologie', 'Opthamologie']
+  SPECIALITES_AUTORISEES = ['Medecine Generale', 'Cardiologie', 'Dermatologie', 'Opthamologie','Pneumologie']
 
   validates :specialite, inclusion: { in: SPECIALITES_AUTORISEES }
 end
