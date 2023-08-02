@@ -56,12 +56,6 @@ class PatientsController < ApplicationController
     
   end
 
-
-
-
-
-  
-
   def edit
       
       @patient = Patient.find(params[:id])
@@ -107,28 +101,12 @@ class PatientsController < ApplicationController
 
   # ... (autres actions du contrôleur)
 
-
-
-
-
-
-
-
-
-  
-  
-
     def fiche
       @patient = Patient.find(params[:id])
     end
 
 
   private
-
-
-      
-
-
       def patient_params
           params.require(:patient).permit(:nom, :pathologie, :chambre, :commentaires, :docteur_id, :chambre_id, :specialite_id, :start_date, :end_date, :date_range)
       end

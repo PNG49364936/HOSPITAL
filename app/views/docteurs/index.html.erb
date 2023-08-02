@@ -8,7 +8,10 @@
               <th>ID</th>
               <th>Nom</th>
               <th>Spécialité</th>
+              <th>Debut absence</th>
+              <th>Fin absence</th>
               <th>Actions</th>
+
             </tr>
           </thead>
           <tbody>
@@ -17,8 +20,9 @@
                 <td><%= docteur.id %></td>
                 <td><%= docteur.nom.capitalize %></td>
                 <td><%= docteur.specialite.specialite %></td>
+                <td><%= docteur.debut_absence %></td>
+                <td><%= docteur.fin_absence %></td>
                 <td>
-                  
                   <%= link_to "Fiche", fiche_docteur_path(docteur),class: "btn btn-primary" %>
                 </td>
               </tr>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_01_185507) do
+ActiveRecord::Schema.define(version: 2023_08_01_164030) do
 
   create_table "chambres", force: :cascade do |t|
     t.integer "numero"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2023_07_01_185507) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "specialite_id", null: false
+    t.date "debut_absence"
+    t.date "fin_absence"
     t.index ["specialite_id"], name: "index_docteurs_on_specialite_id"
   end
 

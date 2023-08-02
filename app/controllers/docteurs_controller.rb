@@ -18,30 +18,21 @@ class DocteursController < ApplicationController
     end
 
     def create
-      # Crée un nouvel objet Docteur à partir des paramètres envoyés par le formulaire
-    
       @docteur = Docteur.new(docteur_params)
-      pp"t"*50
-      # Récupère l'objet Specialite correspondant à l'id envoyé par le formulaire
-      @specialite = Specialite.find(params[:docteur][:specialite_id])
-      
-      pp"u"*50
-      # Affecte l'id de la spécialité au docteur
-      @docteur.specialite = @specialite
-     
-      pp"v"*50
+      # Récupère les dates de début et de fin d'absence depuis le formulaire
+      debut_absence = params[:docteur][:debut_absence]
+      fin_absence = params[:docteur][:fin_absence]
+  
+      # Associe les dates d'absence au médecin
+      @docteur.debut_absence = debut_absence
+      @docteur.fin_absence = fin_absence
+  
       if @docteur.save
-        pp"X"*50
-         @specialite.save
-        pp"w"*50
         # Redirige l'utilisateur vers la page du docteur créé
-        redirect_to docteur_path(@docteur), notice: "Fiche docteur créé"
+        redirect_to docteur_path(@docteur), notice: "Fiche docteur créée"
       else
-        pp @docteur.errors
         # Si la validation des données échoue, affiche un message d'erreur
-        redirect_to new_docteur_path, alert: "4 chiffres maximum"
-        # Affiche à nouveau le formulaire d'ajout de docteur avec les erreurs de validation
-       
+        redirect_to new_docteur_path, alert: "Erreur lors de la création de la fiche docteur"
       end
     end
     
@@ -94,7 +85,7 @@ class DocteursController < ApplicationController
 
     private
     def docteur_params
-      params.require(:docteur).permit(:nom, :specialite, :specialite_id)
+      params.require(:docteur).permit(:nom, :specialite, :specialite_id, :debut_absence, :fin_absence)
     end
 
 
