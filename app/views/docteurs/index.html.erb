@@ -8,8 +8,8 @@
               <th>ID</th>
               <th>Nom</th>
               <th>Spécialité</th>
-              <th>Debut absence</th>
-              <th>Fin absence</th>
+              <th>Absence(s)</th>
+             
               <th>Actions</th>
 
             </tr>
@@ -19,12 +19,17 @@
               <tr>
                 <td><%= docteur.id %></td>
                 <td><%= docteur.nom.capitalize %></td>
-                <td><%= docteur.specialite.specialite %></td>
-                <td><%= docteur.debut_absence %></td>
-                <td><%= docteur.fin_absence %></td>
+                <td><%= docteur.specialite.specialite%></td>
+                <td>
+                <% docteur.absences.each do |absence| %>
+                 <%= l(absence.debut_absence) %> - <%= l(absence.fin_absence) %><br>
+                <% end %></td>
+              
                 <td>
                   <%= link_to "Fiche", fiche_docteur_path(docteur),class: "btn btn-primary" %>
-                </td>
+                
+               <%= link_to "Modifier",edit_docteur_path(docteur),class: "btn btn-primary"%>
+              </td>
               </tr>
             <% end %>
           </tbody>

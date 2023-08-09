@@ -1,5 +1,3 @@
-// app/javascript/controllers/date_picker_controller.js
-
 import { Controller } from "stimulus";
 import flatpickr from "flatpickr";
 
@@ -32,16 +30,47 @@ export default class extends Controller {
     });
   }
 
-  updateAbsenceFields(selectedDates, dateStr, instance) {
-    const absences = this.absenceFieldsTargets.map((field) => field.value);
-    absences.push(`${this.startTarget.value} to ${this.endTarget.value}`);
-    this.absenceFieldsTargets.forEach((field) => (field.value = ""));
-    absences.forEach((absence) => {
-      const input = document.createElement("input");
-      input.type = "hidden";
-      input.name = "docteur[absences][]";
-      input.value = absence;
-      this.element.appendChild(input);
+  updateAbsenceFields() {
+    // Récupérer le nom du médecin et la spécialité du formulaire
+    const nom = document.getElementById("nom-field").value;
+    const specialiteId = document.getElementById("specialite-id-field").value;
+    
+    this.absenceFieldsTargets.forEach((field) => {
+      const start = this.startTarget.value;
+      const end = this.endTarget.value;
+      if (start && end) {
+        const absence = `${start} to ${end}`;
+        field.value = absence;
+        this.addNewAbsenceInput(absence, nom, specialiteId);
+        this.clearDateInputs();
+      }
     });
   }
+
+  addNewAbsenceInput(absence, nom, specialiteId) {
+    const input = document.createElement("input");
+    input.type = "text";
+    input.name = "docteur[absences][]";
+    input.value = absence;
+    this.element.appendChild(input);
+
+    // Champs cachés pour le nom et la spécialité
+    const nomField = document.createElement("input");
+    nomField.type = "hidden";
+    nomField.name = "docteur[nom]";
+    nomField.value = nom;
+    this.element.appendChild(nomField);
+
+    const specialiteIdField = document.createElement("input");
+    specialiteIdField.type = "hidden";
+    specialiteIdField.name = "docteur[specialite_id]";
+    specialiteIdField.value = specialiteId;
+    this.element.appendChild(specialiteIdField);
+  }
+
+  clearDateInputs() {
+    this.startTarget.value = "";
+    this.endTarget.value = "";
+  }
 }
+

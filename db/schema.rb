@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_01_164030) do
+ActiveRecord::Schema.define(version: 2023_08_05_174131) do
+
+  create_table "absences", force: :cascade do |t|
+    t.date "debut_absence"
+    t.date "fin_absence"
+    t.integer "docteur_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["docteur_id"], name: "index_absences_on_docteur_id"
+  end
 
   create_table "chambres", force: :cascade do |t|
     t.integer "numero"
@@ -86,6 +95,7 @@ ActiveRecord::Schema.define(version: 2023_08_01_164030) do
   create_table "specialites_and_add_foreign_key_to_docteurs", force: :cascade do |t|
   end
 
+  add_foreign_key "absences", "docteurs"
   add_foreign_key "docteurs", "specialites"
   add_foreign_key "hospitalizations", "chambres"
   add_foreign_key "hospitalizations", "patients"

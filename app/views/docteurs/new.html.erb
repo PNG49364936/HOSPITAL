@@ -18,16 +18,27 @@
                                     <%= f.select :specialite_id, options_for_select(@specialites.map { |s| [s.specialite, s.id] }, prompt: "Choisir une spécialité"), {} %>
                                 </div>
                             </div>
-                            <br>
-                            <div class="col-2.5">
-                                <%= f.label :debut_absence, content_tag(:strong, "Début d'absence:") %>
-                                <%= f.text_field :debut_absence, data: { "absence-selector-target": "start" }, class: "rounded-box" %>
+                            <br><BR>
+                              <div>
+                                <h6>Créer 1ere absence:</h2>
+                                <br>
                               </div>
-                              <br><br>
-                              <div class="col-2.5">
-                                <%= f.label :fin_absence, content_tag(:strong, "Fin d'absence:") %>
-                                <%= f.text_field :fin_absence, data: { "absence-selector-target": "end" }, class: "rounded-box" %>
-                              </div>
+                            
+                              <%= f.simple_fields_for :absences do |absence_fields| %>
+                                <div class="col-2.5">
+                                  <%= absence_fields.label :debut_absence, content_tag(:strong, "Début d'absence:") %>
+                                  <%= absence_fields.text_field :debut_absence, data: { "absence-selector-target": "start" }, class: "rounded-box" %>
+                                </div>
+                                <br><br>
+                                <div class="col-2.5">
+                                  <%= absence_fields.label :fin_absence, content_tag(:strong, "Fin d'absence:") %>
+                                  <%= absence_fields.text_field :fin_absence, data: { "absence-selector-target": "end" }, class: "rounded-box" %>
+                                </div>
+                            <% end %>
+                              
+                             <br>
+                             
+                            
                               
                               <br><br>
                             <div class="submit">
