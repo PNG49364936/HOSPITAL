@@ -41,6 +41,7 @@ class DocteursController < ApplicationController
       @fin_absence = @docteur.fin_absence
       @absences = @docteur.absences
       @docteurs = Docteur.includes(:absences).all
+   
     end
 
     def update

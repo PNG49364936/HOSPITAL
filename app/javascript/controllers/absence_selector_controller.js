@@ -11,6 +11,9 @@ export default class extends Controller {
   }
 
   initializeFlatpickr() {
+    this.destroyFlatpickr(this.startTarget);
+    this.destroyFlatpickr(this.endTarget);
+    
     flatpickr(this.startTarget, {
       minDate: "today",
       onChange: this.updateEndPicker.bind(this),
@@ -31,46 +34,95 @@ export default class extends Controller {
   }
 
   updateAbsenceFields() {
-    // Récupérer le nom du médecin et la spécialité du formulaire
-    const nom = document.getElementById("nom-field").value;
-    const specialiteId = document.getElementById("specialite-id-field").value;
-    
-    this.absenceFieldsTargets.forEach((field) => {
-      const start = this.startTarget.value;
-      const end = this.endTarget.value;
-      if (start && end) {
-        const absence = `${start} to ${end}`;
-        field.value = absence;
-        this.addNewAbsenceInput(absence, nom, specialiteId);
-        this.clearDateInputs();
-      }
-    });
+    // Votre code existant ici...
   }
 
   addNewAbsenceInput(absence, nom, specialiteId) {
-    const input = document.createElement("input");
-    input.type = "text";
-    input.name = "docteur[absences][]";
-    input.value = absence;
-    this.element.appendChild(input);
-
-    // Champs cachés pour le nom et la spécialité
-    const nomField = document.createElement("input");
-    nomField.type = "hidden";
-    nomField.name = "docteur[nom]";
-    nomField.value = nom;
-    this.element.appendChild(nomField);
-
-    const specialiteIdField = document.createElement("input");
-    specialiteIdField.type = "hidden";
-    specialiteIdField.name = "docteur[specialite_id]";
-    specialiteIdField.value = specialiteId;
-    this.element.appendChild(specialiteIdField);
+    // Votre code existant ici...
   }
 
   clearDateInputs() {
     this.startTarget.value = "";
     this.endTarget.value = "";
   }
+
+  addAbsenceFields() {
+    const tableBody = document.querySelector("tbody");
+    const newRow = document.createElement("tr");
+
+    // Column for debut_absence
+    const debutColumn = document.createElement("td");
+    const debutInput = document.createElement("input");
+    debutInput.type = "text";
+    debutInput.name = "docteur[absences_attributes][][debut_absence]";
+    debutInput.setAttribute("data-absence-selector-target", "start");
+    debutInput.classList.add("rounded-box");
+    debutColumn.appendChild(debutInput);
+    
+    // Column for fin_absence
+    const finColumn = document.createElement("td");
+    const finInput = document.createElement("input");
+    finInput.type = "text";
+    finInput.name = "docteur[absences_attributes][][fin_absence]";
+    finInput.setAttribute("data-absence-selector-target", "end");
+    finInput.classList.add("rounded-box");
+    finColumn.appendChild(finInput);
+
+    // Ajout des boutons "Valider dates" et "Supprimer"
+    const submitBtn = document.createElement("input");
+    submitBtn.type = "submit";
+    submitBtn.value = "Valider dates";
+    submitBtn.classList.add("btn", "btn-primary");
+
+    const deleteLink = document.createElement("a");
+    deleteLink.href = "#"; // Vous devez définir la bonne URL ici
+    deleteLink.innerText = "Supprimer";
+    deleteLink.classList.add("btn", "btn-primary");
+    deleteLink.setAttribute("data-confirm", "Êtes-vous sûr de vouloir supprimer cette absence?");
+    deleteLink.setAttribute("data-method", "delete");
+
+    const btnDiv = document.createElement("div");
+    btnDiv.classList.add("btn");
+    btnDiv.appendChild(submitBtn);
+    btnDiv.appendChild(deleteLink);
+
+    const actionColumn = document.createElement("td");
+    actionColumn.appendChild(btnDiv);
+
+    newRow.appendChild(debutColumn);
+    newRow.appendChild(finColumn);
+    newRow.appendChild(actionColumn);
+  
+    tableBody.appendChild(newRow);
+
+    // Réinitialisez Flatpickr pour les nouveaux champs
+    this.initializeFlatpickrForNewRow(newRow);
+  }
+
+  initializeFlatpickrForNewRow(row) {
+    const startInput = row.querySelector('[data-absence-selector-target="start"]');
+    const endInput = row.querySelector('[data-absence-selector-target="end"]');
+  
+    this.destroyFlatpickr(startInput);
+    this.destroyFlatpickr(endInput);
+  
+    flatpickr(startInput, {
+      minDate: "today",
+      onChange: this.updateEndPicker.bind(this)
+    });
+
+    flatpickr(endInput, {
+      minDate: "today",
+      onChange: this.updateAbsenceFields.bind(this)
+    });
+  }
+
+  destroyFlatpickr(element) {
+    const fp = element._flatpickr;
+    if (fp) {
+      fp.destroy();
+    }
+  }
 }
+
 
