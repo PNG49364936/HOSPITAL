@@ -1,42 +1,55 @@
-<div class="container col-12">
+<div class="container col-12" data-controller="date-selector">
     <div>
-        <h1>Créer Patient</h1>
+      <h1>Éditer Patient</h1>
     </div>
-    <br><br>
-            <div class="row">
-                <div class="col-4 mt-5">
-                    <%= simple_form_for(@patient) do |f| %>
-                            <div class="col-2.5">
-                                <%=  f.label :nom,content_tag(:strong, 'Nom Patient:') %>
-                                <%=  f.text_field :nom, class:"rounded-box"%>
-                            </div>
-                            <br><br>
-                            <div class="col-2.5">
-                                <%=  f.label :Chambre,content_tag(:strong, 'Numero de chambre:') %>
-                                <%= f.collection_select :chambre_id, Chambre.all, :id, ->(chambre) { "#{chambre.numero}" }, { include_blank: "Choisir" }, { class: "form-control" } %>
-                            </div>
-                            <br><br>
-                            <div class="col-3.5">
-                                <div class="form-group">
-                                <%= f.label :pathologie, content_tag(:strong, "Pathologie:"), class: "font-weight-bold" %>
-                                <%= f.select :pathologie, ['Medecine Generale', 'Cardiologie', 'Dermatologie',"Ophtamologie"],{ include_blank: "Choisir" }, { readonly: true}  %>
-                                </div>
-                            </div>
-                            <br><br>
-                            <div class="form-group">
-                                <%= f.label :docteur_id, content_tag(:strong, "Nom du docteur:"), class: "font-weight-bold" %>
-                                <%= f.collection_select :docteur_id, Docteur.all, :id, ->(docteur) { "#{docteur.nom} - #{docteur.specialite}" }, { include_blank: "Choisir" }, { class: "form-control" } %>
 
-                              </div>
+    <div class="row">
+      <div class="col-4 mt-5" >
+        <%= simple_form_for(@patient) do |f| %>
+          <div class="col-2.5">
+            <%= f.label :nom, content_tag(:strong, 'Nom Patient:') %>
+            <%= f.text_field :nom, class:"rounded-box" %>
+          </div>
+          <br>
+          <div class="col-2.5" >
+            <%= f.label :Chambre, content_tag(:strong, "Chambre:") %>
+            <% if @chambres.empty? %>
+              <%= content_tag :div, "Pas de chambre disponible", class: "alert alert-warning" %>
+            <% else %>
+              <%= f.select :chambre_id, options_for_select(@chambres.map { |c| [c.numero, c.id] }, @patient.chambre_id), { include_blank: "Choisir" }, data: { "date-selector-target": "chambre" }, class: "rounded-box" %>
+            <% end %>
+          </div>
+          <br>
 
+          <div class="col-2.5">
+            <strong>Dates d'hospitalisation:</strong>
+            <p>Entrée: <%= @patient.start_date.to_date %></p>
+            <p>Sortie: <%= @patient.end_date.to_date %></p>
+           
+            <p class="modifier">Modifier en cliquant dans le champs ci-dessous</p>
+            <%= f.text_field :date_range, data: { 'date-selector-target': "start" }, class: "rounded-box form-control" %>
+            <br>
+          </div>
 
-                              <br><br>
-                            <div class="submit">
-                            <%=f.submit"Valider", class: "btn btn-primary"%>
-                           
-                            <span><%=link_to"Home",root_path,class: "btn btn-primary" %></span>
-                            </div>
-                    <%end%>
-                </div>
+          <br>
+          <div class="col-3.5">
+            <div class="form-group">
+              <%= f.label :specialite_id, content_tag(:strong, "Pathologie:"), class: "font-weight-bold" %>
+              <%= f.select :specialite_id, options_for_select(@specialites.map { |s| [s.specialite, s.id] }, @patient.specialite_id), { include_blank: "Choisir" }.merge( { readonly: true }) %>
             </div>
-</div>
+          </div>
+          <br><br>
+          <div class="form-group">
+            <%= f.label :docteur_id, content_tag(:strong, "Affecter un docteur:"), class: "font-weight-bold" %>
+            <%= f.collection_select :docteur_id, @docteurs, :id, ->(docteur) { "#{docteur.nom} - #{docteur.specialite.specialite}" }, { include_blank: "Choisir" }, { class: "form-control" } %>
+          </div>
+          <br><br>
+          <div class="submit">
+            <%= f.submit "Mettre à jour", class: "btn btn-primary" %>
+            <%= link_to "Annuler", root_path, class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  

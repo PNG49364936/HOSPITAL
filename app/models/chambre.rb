@@ -2,6 +2,7 @@ class Chambre < ApplicationRecord
     
  has_one :patient
  has_one :room_numbers
+ has_many :hospitalizations
 
    
   def disponible?

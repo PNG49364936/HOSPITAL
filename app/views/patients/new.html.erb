@@ -12,13 +12,13 @@
       <% end %>
   </div>
 
-<div class="container col-12">
+<div class="container col-12" data-controller="date-selector">
     <div>
         <h1>Créer Patient</h1>
     </div>
     <br><br>
             <div class="row">
-                <div class="col-4 mt-5">
+                <div class="col-4 mt-5" >
                     <%= simple_form_for(@patient) do |f| %>
                             <div class="col-2.5">
                                 <%=  f.label :nom,content_tag(:strong, 'Nom Patient:') %>
@@ -26,24 +26,22 @@
                             </div>
                             <br><br>
 
-                            <div class="col-2.5">
+                            <div class="col-2.5" >
                               <%= f.label :Chambre, content_tag(:strong, "Chambre:") %>
                               <% if @chambres.empty? %>
                                 <%= content_tag :div, "Pas de chambre disponible", class: "alert alert-warning" %>
                               <% else %>
                               <%= f.select :chambre_id, options_for_select(@chambres.map { |c| [c.numero, c.id] }), { include_blank: "Choisir" }, data: { "date-selector-target": "chambre" }, class: "rounded-box" %>
+
                               <% end %>
                           </div>
                           <br><br>
 
-                            <div class="col-2.5" data-controller="date-selector">
-                              <%= f.label :start_date, content_tag(:strong, 'Date de début d\'hospitalisation:') %>
-                              <%= f.date_field :start_date, data: { target: "date-selector.start" },class:"rounded-box" %>
-                            </div>
-                            <br><br>
-                            <div class="col-2.5" data-controller="date-selector">
-                              <%= f.label :end_date, content_tag(:strong, 'Date de fin d\'hospitalisation:') %>
-                              <%= f.date_field :end_date, data: { target: "date-selector.end" },class:"rounded-box" %>
+                          <div class="col-2.5" >
+                            <%= f.label :date_range, content_tag(:strong, 'Dates d\'hospitalisation:') %>
+                            <%= f.text_field :date_range, data: { 'date-selector-target': "start" }, class:"rounded-box" %>
+                            <%= f.hidden_field :start_date, data: { 'date-selector-target': "start_date" } %>
+                            <%= f.hidden_field :end_date, data: { 'date-selector-target': "end_date" } %>
                             </div>
                             <br><br>
 

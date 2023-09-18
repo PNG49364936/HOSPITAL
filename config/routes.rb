@@ -8,10 +8,18 @@ Rails.application.routes.draw do
 
   resources :docteurs do
     get 'fiche',on: :member
+    resources :absences, only: [:create, :destroy]
+  end
+
+  resources :absences do
+    get 'fiche',on: :member
+    resources :absences, only: [:destroy, :create]
   end
 
   resources :patients do
     get 'fiche',on: :member
+    resources :absences, only: [:destroy]
+
   end
 
   resources :specialites do
@@ -26,6 +34,8 @@ Rails.application.routes.draw do
   resources :chambres do
     get 'unavailable_dates', on: :member
   end
+
+  
 
   root to: 'pages#home'
   

@@ -1,4 +1,4 @@
-<div class="container col-12">
+<div class="container col-12" data-controller="absence-selector" >
     <div>
         <h1>Créer Docteur</h1>
     </div>
@@ -14,23 +14,34 @@
                             <br><br>
                             <div class="col-3.5">
                                 <div class="form-group">
-                                 
                                     <%= f.label :specialite, content_tag(:strong, "Spécialité:"), class: "font-weight-bold" %>
                                     <%= f.select :specialite_id, options_for_select(@specialites.map { |s| [s.specialite, s.id] }, prompt: "Choisir une spécialité"), {} %>
-
                                 </div>
                             </div>
-                  
-                              
-                              <br><br>
-                              
-                            <div class="submit">
-                            <%=f.submit"Valider", class: "btn btn-primary"%>
-
-                           
-                           
-                            <span><%=link_to"Home",root_path,class: "btn btn-primary" %></span>
+                            <br><BR>
+                              <div>
+                                <h5><strong>Créer 1ere absence:</strong></h5>
+                                <br>
+                              </div>
+                            <div class="absences">
+                              <%= f.simple_fields_for :absences do |absence_fields| %>
+                                  <div class="col-2.5">
+                                    <%= absence_fields.label :debut_absence, content_tag(:strong, "Début d'absence:") %>
+                                    <%= absence_fields.text_field :debut_absence, data: { "absence-selector-target": "start" }, class: "rounded-box" %>
+                                  </div>
+                                  <br><br>
+                                  <div class="col-2.5">
+                                    <%= absence_fields.label :fin_absence, content_tag(:strong, "Fin d'absence:") %>
+                                    <%= absence_fields.text_field :fin_absence, data: { "absence-selector-target": "end" }, class: "rounded-box" %>
+                                  </div>
+                              <% end %>
+                              <br><br><br>
+                                <div class="submit">
+                                    <%=f.submit"Valider", class: "btn btn-primary"%>
+                                    <span><%=link_to"Home",root_path,class: "btn btn-primary" %></span>
+                                </div>
                             </div>
+
                     <%end%>
                 </div>
             </div>

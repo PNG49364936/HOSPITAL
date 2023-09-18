@@ -1,28 +1,69 @@
-<div class="container col-12">
+<div class="container col-12" data-controller="absence-selector">
     <div>
-        <h1>Créer Docteur</h1>
+        <h1>Modifier Docteur</h1>
     </div>
     <br><br>
             <div class="row">
-                <div class="col-4 mt-5">
-                    <%= simple_form_for(@docteur) do |f| %>
-                            <div class="col-2.5">
-                                <%=  f.label :nom,content_tag(:strong, 'Nom Docteur:') %>
-                                <%=  f.text_field :nom, class:"rounded-box"%>
-                            </div>
-    <br><br>
-                            <div class="col-3.5">
-                                <div class="form-group">
-                                <%= f.label :specialite, content_tag(:strong, "Spécialité:"), class: "font-weight-bold" %>
-                                <%= f.select :specialite, ['Medecine Generale', 'Cardiologue', 'Dermatologue', 'Ophtamologue'],{ include_blank: "Choisir" }, { readonly: true}  %>
-                                </div>
-                            </div>
-  <br><br>
-                            <div class="submit">
-                            <%=f.submit "Valider"%>
-                            </div>
+                <div class="col-8 mt-5">
+                  <%= simple_form_for(@docteur, url: docteur_path(@docteur), method: :patch) do |f| %>
 
+
+
+                                  <div class="col-2">
+                                      <%=  f.label :nom,content_tag(:strong, 'Nom Docteur:') %>
+                                      <%=  f.text_field :nom, class:"rounded-box"%>
+                                  </div>
+                                  <br><br>
+                                  <div class="col-5.5">
+                                    <div class="form-group">
+                                        
+                                        <%= f.label :specialite, content_tag(:strong, "Spécialité:"), class: "font-weight-bold" %>
+                                        <%= f.select :specialite_id, options_for_select(@specialites.map { |s| [s.specialite, s.id] }, @docteur.specialite_id), { include_blank: "Choisir" }.merge( { readonly: true }) %>
+                                  
+                                    </div>
+                                    <br><br>
+                                </div>
+                                  <div class="modif">
+                                    <h5><strong style="color: red;">Attention</strong> : Modifier la spécialité entrainera l'annulation de tous les malades suivis par ce médecin.</h5>
+                                  </div>
+                               
+                                  <br><br>
+                          <table class="table table-bordered" style="border: 4px solid black;">
+                                <thead>
+                                      <tr>
+                                        <th>Date début absence</th>
+                                        <th>Date fin absence</th>
+                                        <th>Actions</th>
+                                      </tr>
+                                </thead>
+                                    <tbody>
+                                      <%= f.simple_fields_for :absences do |absence_fields| %>
+                                      <tr>
+                                        <td>
+                                         
+                                          <%= absence_fields.text_field :debut_absence, data: { "absence-selector-target": "start" }, class: "rounded-box" %>
+                                        </td>
+                                        <td>
+                                         
+                                          <%= absence_fields.text_field :fin_absence, data: { "absence-selector-target": "end" }, class: "rounded-box" %>
+                                        </td>
+                                        <td>
+                                          <div class="btn">
+                                          <%=f.submit "Valider dates", class: "btn btn-primary"%>
+                                          <%= link_to "supprimer", docteur_absence_path(@docteur, absence_fields.object), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cette absence?" }, class: "btn btn-primary" %>
+                                          </div>
+                                        </td>
+                                      </tr>
+                                    <% end %>
+                                    </tbody>
+                          </table>
+                          <button type="button" data-action="click->absence-selector#addAbsenceFields" class="btn btn-secondary">Ajouter une autre absence</button>
+                      
                     <%end%>
                 </div>
             </div>
+                  <br><br>
+                <div>
+                        <%=link_to"Home",root_path,class: "btn btn-primary"%>
+                </div>
 </div>
